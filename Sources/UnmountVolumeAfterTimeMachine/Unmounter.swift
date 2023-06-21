@@ -14,7 +14,7 @@ import AppKit
 class Unmounter {
 
     func unmount(volume: String) {
-        print("about to unmount \(volume)")
+        os_log( "about to unmount %{public}@", log: .default, type: .info, volume )
 
 //        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(diskUnmounted), name: NSWorkspace.didUnmountNotification, object: nil)
 
@@ -24,28 +24,24 @@ class Unmounter {
 
         let volumePathMather = "file://\(volume)/"
 
-        print("Try to match \(volumePathMather)")
+        os_log( "Try to match %{public}@", log: .default, type: .info, volumePathMather )
 
         diskUrls?.forEach({
-
-            print( $0.absoluteString )
+            os_log( "%{public}@", log: .default, type: .info, $0.absoluteString )
 
             if  volumePathMather == $0.absoluteString {
 
-                print( "match" )
+                os_log( "match" )
 
                 guard let disk: DADisk = DADiskCreateFromVolumePath(kCFAllocatorDefault, session, $0 as CFURL) else {
-                    print("Failed to get DADisk")
+                    os_log("Failed to get DADisk")
                     return
                 }
 
                 DADiskUnmount(disk, DADiskUnmountOptions(kDADiskUnmountOptionDefault), { _, _, _ in
-                    print("should now be unmounted")
+                    os_log("should now be unmounted")
                 }, nil)
-
             }
-
         })
-
     }
 }

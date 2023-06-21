@@ -1,3 +1,6 @@
+
+import OSLog
+
 @main
 public struct UnmountVolumeAfterTimeMachine {
     public private(set) var text = "Hello, World!"
@@ -5,7 +8,7 @@ public struct UnmountVolumeAfterTimeMachine {
     static var notificationListener: NotificationListener? = nil
 
     public static func main() {
-        print(UnmountVolumeAfterTimeMachine().text)
+        os_log( "%{public}@", log: .default, type: .info, UnmountVolumeAfterTimeMachine().text )
 
         let unmounter = Unmounter()
         notificationListener = NotificationListener(unmounter: unmounter)

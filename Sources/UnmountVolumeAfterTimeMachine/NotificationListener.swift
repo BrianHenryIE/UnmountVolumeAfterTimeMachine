@@ -7,6 +7,7 @@
 import Foundation
 import SwiftTimeMachine
 import BHSwiftOSLogStream
+import OSLog
 
 class NotificationListener {
 
@@ -42,15 +43,15 @@ class NotificationListener {
 
         guard let timeMachineLog = notification.object as? TimeMachineLog else {return}
 
-        print( "new TimeMachine notification received")
+        os_log( "new TimeMachine notification received")
 
         guard let newLog: LogEntry = timeMachineLog.previousInfoLogs.get() else {
             return
         }
 
-        print( "TimeMachine notification message: \(newLog.message)" )
+        os_log( "TimeMachine notification message: \(newLog.message)" )
 
-        print( "Pausing 10 seconds" )
+        os_log( "Pausing 10 seconds" )
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 
@@ -59,21 +60,21 @@ class NotificationListener {
             // Maybe add a momentary delay here
 
             guard let status: TmStatus = tmUtil.status() else {
-                print("failed to get tmUtil.status()")
+                os_log("failed to get tmUtil.status()")
                 return
             }
 
-            print("Time machine is\(status.running ? "" : " not") currently running.")
+            os_log( "Time machine is %{public}@ currently running.", log: .default, type: .info, status.running ? "" : " not" )
 
             guard let destinationInfo = tmUtil.destinationInfo() else {
-                print( "failed to get tmUtil.destinationInfo() ")
+                os_log( "failed to get tmUtil.destinationInfo() ")
                 return
             }
 
             // Filter here to local mount points
 
             guard let destinationMountPoint = destinationInfo.destinations.first?.mountPoint else {
-                print("failed to get destinationInfo.destinations.first?.mountPoint")
+                os_log("failed to get destinationInfo.destinations.first?.mountPoint")
                 return
             }
 
