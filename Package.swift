@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "UnmountVolumeAfterTimeMachine",
+    platforms: [
+        .macOS(.v13)
+    ],
     dependencies: [
         .package(
                 url: "https://github.com/BrianHenryIE/SwiftTimeMachine",
