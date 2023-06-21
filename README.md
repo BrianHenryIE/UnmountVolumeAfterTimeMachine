@@ -13,3 +13,4 @@ Ideally:
 * Disks should be re-mounted periodically
 * Some sort of UI/checkbox to enable/disable/communicate the app is present and running
 * [Notifications](https://github.com/dataJAR/Notifier) when the disk is ejected
+* Make available via [brew](https://docs.brew.sh/Formula-Cookbook)
