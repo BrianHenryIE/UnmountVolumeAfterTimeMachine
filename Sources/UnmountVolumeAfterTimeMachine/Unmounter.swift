@@ -4,7 +4,6 @@
 //
 //  Created by Brian Henry on 2/25/23.
 //
-// TODO: Use Disk Arbitration framework.
 // https://stackoverflow.com/questions/1408216/detect-when-removable-storage-is-unmounted?rq=4
 
 import Foundation
