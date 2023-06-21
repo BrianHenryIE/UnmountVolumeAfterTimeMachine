@@ -1,3 +1,6 @@
+//
+//
+//
 
 import OSLog
 
@@ -12,5 +15,12 @@ public struct UnmountVolumeAfterTimeMachine {
 
         let unmounter = Unmounter()
         notificationListener = NotificationListener(unmounter: unmounter)
+
+        print("before")
+
+        // How to close when finished?!!
+        RunLoop.current.run()
+
+        print("after")
     }
 }
