@@ -8,13 +8,12 @@ import OSLog
 public struct UnmountVolumeAfterTimeMachine {
     public private(set) var text = "Hello, World!"
 
-    static var notificationListener: NotificationListener? = nil
+    static var notificationListener: TimeMachineNotificationListener? = nil
 
     public static func main() {
         os_log( "%{public}@", log: .default, type: .info, UnmountVolumeAfterTimeMachine().text )
 
-        let unmounter = Unmounter()
-        notificationListener = NotificationListener(unmounter: unmounter)
+        notificationListener = TimeMachineNotificationListener()
 
         print("before")
 

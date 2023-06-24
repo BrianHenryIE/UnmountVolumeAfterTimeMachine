@@ -9,11 +9,11 @@ import SwiftTimeMachine
 import BHSwiftOSLogStream
 import OSLog
 
-class NotificationListener {
+class TimeMachineNotificationListener {
 
     let unmounter: Unmounter
 
-    init(unmounter: Unmounter) {
+    init(unmounter: Unmounter = Unmounter()) {
 
         self.unmounter = unmounter
 
@@ -41,7 +41,9 @@ class NotificationListener {
 
     @objc func unmountVolume(notification: Notification) {
 
-        guard let timeMachineLog = notification.object as? TimeMachineLog else {return}
+        guard let timeMachineLog = notification.object as? TimeMachineLog else {
+            return
+        }
 
         os_log( "new TimeMachine notification received")
 
@@ -56,8 +58,6 @@ class NotificationListener {
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 
             let tmUtil = TmUtil()
-
-            // Maybe add a momentary delay here
 
             guard let status: TmStatus = tmUtil.status() else {
                 os_log("failed to get tmUtil.status()")
