@@ -51,7 +51,7 @@ class TimeMachineNotificationListener {
             return
         }
 
-        os_log( "TimeMachine notification message: \(newLog.message)" )
+        os_log( "TimeMachine notification message: %public%@", newLog.message )
 
         os_log( "Pausing 10 seconds" )
 
@@ -60,11 +60,9 @@ class TimeMachineNotificationListener {
             let tmUtil = TmUtil()
 
             guard let status: TmStatus = tmUtil.status() else {
-                os_log("failed to get tmUtil.status()")
+                os_log("failed to confirm backup is not still running (via tmUtil.status())")
                 return
             }
-
-            os_log( "Time machine is %{public}@ currently running.", log: .default, type: .info, status.running ? "" : " not" )
 
             guard let destinationInfo = tmUtil.destinationInfo() else {
                 os_log( "failed to get tmUtil.destinationInfo() ")

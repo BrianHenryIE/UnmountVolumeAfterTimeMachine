@@ -11,15 +11,15 @@ public struct UnmountVolumeAfterTimeMachine {
     static var notificationListener: TimeMachineNotificationListener? = nil
 
     public static func main() {
+
+        // TODO: Conditionally load this when the app is run from the command line, but not launchd.
+        _ = ForegroudPrinter()
+
         os_log( "%{public}@", log: .default, type: .info, UnmountVolumeAfterTimeMachine().text )
 
         notificationListener = TimeMachineNotificationListener()
 
-        print("before")
-
-        // How to close when finished?!!
+        // Stay alive until the disk is unmounted.
         RunLoop.current.run()
-
-        print("after")
     }
 }
