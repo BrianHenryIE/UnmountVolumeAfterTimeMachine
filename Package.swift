@@ -8,6 +8,12 @@ let package = Package(
     platforms: [
         .macOS(.v13)
     ],
+    products: [
+        .executable(
+                name: "UnmountVolumeAfterTimeMachine",
+                targets: ["UnmountVolumeAfterTimeMachine"]
+        ),
+    ],
     dependencies: [
         .package(
                 url: "https://github.com/BrianHenryIE/SwiftTimeMachine",
