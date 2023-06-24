@@ -28,7 +28,7 @@ class Unmounter {
         os_log( "Try to match %{public}@", log: .default, type: .info, volumePathMatcher )
 
         diskUrls?.forEach({
-            os_log( "%{public}@", log: .default, type: .info, $0.absoluteString )
+            os_log( "Disk: %{public}@", log: .default, type: .info, $0.absoluteString )
 
             if volumePathMatcher == $0.absoluteString {
 
@@ -47,6 +47,7 @@ class Unmounter {
                         object: nil
                 )
 
+                // What if something other than time machine was using it?!
                 DADiskUnmount(disk, DADiskUnmountOptions(kDADiskUnmountOptionDefault), { _, _, _ in
                     os_log("should now be unmounted")
                 }, nil)
