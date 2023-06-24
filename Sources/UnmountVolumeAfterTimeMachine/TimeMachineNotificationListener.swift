@@ -69,9 +69,11 @@ class TimeMachineNotificationListener {
                 return
             }
 
-            // Filter here to local mount points
+            // Filter to only local destinations.
+            // TODO: This should really be captured from the notification, not guessed from tmutil.
+            let localDestinations = destinationInfo.destinations.filter{ $0.kind == .local }
 
-            guard let destinationMountPoint = destinationInfo.destinations.first?.mountPoint else {
+            guard let destinationMountPoint = localDestinations.first?.mountPoint else {
                 os_log("failed to get destinationInfo.destinations.first?.mountPoint")
                 return
             }
