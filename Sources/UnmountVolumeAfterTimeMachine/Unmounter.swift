@@ -16,8 +16,6 @@ class Unmounter {
     func unmount(volume: String) {
         os_log( "about to unmount %{public}@", log: .default, type: .info, volume )
 
-//        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(diskUnmounted), name: NSWorkspace.didUnmountNotification, object: nil)
-
         guard let session = DASessionCreate(kCFAllocatorDefault) else { return }
 
         let diskUrls = FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: nil)
@@ -41,10 +39,24 @@ class Unmounter {
                     return
                 }
 
+                // Listen for the `didUnmountNotification`.
+                NSWorkspace.shared.notificationCenter.addObserver(
+                        self,
+                        selector: #selector(unmounted),
+                        name: NSWorkspace.didUnmountNotification,
+                        object: nil
+                )
+
                 DADiskUnmount(disk, DADiskUnmountOptions(kDADiskUnmountOptionDefault), { _, _, _ in
                     os_log("should now be unmounted")
                 }, nil)
             }
         })
+    }
+
+    // `.didUnmountNotification`
+    @objc func unmounted() {
+        os_log("volume has been unmounted, exiting")
+        exit(0)
     }
 }
