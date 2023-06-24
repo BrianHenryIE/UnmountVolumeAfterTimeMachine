@@ -22,14 +22,17 @@ class Unmounter {
 
         let diskUrls = FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: nil)
 
-        let volumePathMather = "file://\(volume)/"
+        guard let urlEncodedVolume = volume.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+        let volumePathMatcher = "file://\(urlEncodedVolume)/"
 
-        os_log( "Try to match %{public}@", log: .default, type: .info, volumePathMather )
+        os_log( "Try to match %{public}@", log: .default, type: .info, volumePathMatcher )
 
         diskUrls?.forEach({
             os_log( "%{public}@", log: .default, type: .info, $0.absoluteString )
 
-            if  volumePathMather == $0.absoluteString {
+            if volumePathMatcher == $0.absoluteString {
 
                 os_log( "match" )
 
