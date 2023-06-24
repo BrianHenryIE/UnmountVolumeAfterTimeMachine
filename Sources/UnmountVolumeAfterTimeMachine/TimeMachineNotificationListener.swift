@@ -59,7 +59,7 @@ class TimeMachineNotificationListener {
 
             let tmUtil = TmUtil()
 
-            guard let status: TmStatus = tmUtil.status() else {
+            if tmUtil.status()?.running != false {
                 os_log("failed to confirm backup is not still running (via tmUtil.status())")
                 return
             }
@@ -78,9 +78,7 @@ class TimeMachineNotificationListener {
                 return
             }
 
-            if false == status.running {
-                self.unmounter.unmount(volume: destinationMountPoint)
-            }
+            self.unmounter.unmount(volume: destinationMountPoint)
         }
     }
 }
