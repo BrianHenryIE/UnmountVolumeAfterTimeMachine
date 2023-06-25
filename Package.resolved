@@ -6,7 +6,7 @@
       "location" : "https://github.com/BrianHenryIE/BHSwiftOSLogStream",
       "state" : {
         "branch" : "master",
-        "revision" : "cc658cc7954425ce9e9bd9a5ed2d622427e8c95d"
+        "revision" : "f8f0f0ee6be3de0159f777c89f854eed4eb3ce64"
       }
     },
     {
@@ -33,7 +33,7 @@
       "location" : "https://github.com/BrianHenryIE/SwiftTimeMachine",
       "state" : {
         "branch" : "master",
-        "revision" : "d0047e8b2a772c6c02c9da69cc5cd5cf10bcf501"
+        "revision" : "3bba19aa5bd35b12bd53c65b9801ecbe612c439b"
       }
     }
   ],
