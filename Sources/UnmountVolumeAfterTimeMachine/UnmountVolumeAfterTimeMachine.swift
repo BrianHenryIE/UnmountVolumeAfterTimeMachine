@@ -12,6 +12,8 @@ public struct UnmountVolumeAfterTimeMachine {
 
     public static func main() {
 
+        _ = LaunchD()
+
         // TODO: Conditionally load this when the app is run from the command line, but not launchd.
 //        _ = ForegroudPrinter()
 

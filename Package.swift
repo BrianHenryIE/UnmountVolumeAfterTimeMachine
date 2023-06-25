@@ -20,6 +20,10 @@ let package = Package(
                 branch: "master"
         ),
         .package(
+                url: "https://github.com/emorydunn/LaunchAgent",
+                from: "0.3.0"
+        ),
+        .package(
                 url: "https://github.com/apple/swift-argument-parser.git",
                 from: "1.2.0"
         ),
@@ -30,8 +34,9 @@ let package = Package(
         .executableTarget(
             name: "UnmountVolumeAfterTimeMachine",
             dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                .product(name: "SwiftTimeMachine", package: "SwiftTimeMachine")
+                .product(name: "SwiftTimeMachine", package: "SwiftTimeMachine"),
+                .product(name: "LaunchAgent", package: "LaunchAgent"),
+                .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]),
         .testTarget(
             name: "UnmountVolumeAfterTimeMachineTests",
