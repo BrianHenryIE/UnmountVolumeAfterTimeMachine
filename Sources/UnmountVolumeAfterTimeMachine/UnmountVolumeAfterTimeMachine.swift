@@ -13,7 +13,7 @@ public struct UnmountVolumeAfterTimeMachine {
     public static func main() {
 
         // TODO: Conditionally load this when the app is run from the command line, but not launchd.
-        _ = ForegroudPrinter()
+//        _ = ForegroudPrinter()
 
         os_log( "%{public}@", log: .default, type: .info, UnmountVolumeAfterTimeMachine().text )
 
