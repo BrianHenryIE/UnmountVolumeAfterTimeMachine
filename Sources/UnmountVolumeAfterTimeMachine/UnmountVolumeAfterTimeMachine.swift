@@ -6,22 +6,22 @@ import OSLog
 
 @main
 public struct UnmountVolumeAfterTimeMachine {
-    public private(set) var text = "Hello, World!"
+  public private(set) var text = "Hello, World!"
 
-    static var notificationListener: TimeMachineNotificationListener? = nil
+  static var notificationListener: TimeMachineNotificationListener?
 
-    public static func main() {
+  public static func main() {
 
-        _ = LaunchD()
+    _ = LaunchD()
 
-        // TODO: Conditionally load this when the app is run from the command line, but not launchd.
-//        _ = ForegroudPrinter()
+    // TODO: Conditionally load this when the app is run from the command line, but not launchd.
+    //        _ = ForegroudPrinter()
 
-        os_log( "%{public}@", log: .default, type: .info, UnmountVolumeAfterTimeMachine().text )
+    os_log("%{public}@", log: .default, type: .info, UnmountVolumeAfterTimeMachine().text)
 
-        notificationListener = TimeMachineNotificationListener()
+    notificationListener = TimeMachineNotificationListener()
 
-        // Stay alive until the disk is unmounted.
-        RunLoop.current.run()
-    }
+    // Stay alive until the disk is unmounted.
+    RunLoop.current.run()
+  }
 }
