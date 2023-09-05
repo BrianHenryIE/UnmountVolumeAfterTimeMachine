@@ -63,6 +63,7 @@ class Unmounter {
 
   // `.didUnmountNotification`
   @objc func unmounted() {
+    // Should check here are any other mounted volumes TM destinations, but that's unlikely.
     os_log("volume has been unmounted, exiting")
     exit(0)
   }

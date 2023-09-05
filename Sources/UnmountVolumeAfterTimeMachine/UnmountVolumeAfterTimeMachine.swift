@@ -5,6 +5,12 @@
 import OSLog
 import SwiftTimeMachine
 
+// Should have --enable to add launchd, --disable to delete launchd, --background to start in bg
+// Instruction oh how to uninstall
+// Each start should print whether launchd is set up
+
+// Add a ESC keyboard listener to quit
+// Exit if run in foreground, with instruction on how ot tail logs
 
 @main
 public struct UnmountVolumeAfterTimeMachine {
