@@ -18,6 +18,7 @@ Uses [BrianHenryIE/SwiftTimeMachine](https://github.com/BrianHenryIE/SwiftTimeMa
 TODO:
 * ~~App should [run when disk plugged](https://apple.stackexchange.com/a/13724/299117) in / Time Machine starts and quit when the disk is ejected~~ [emorydunn/LaunchAgent](https://github.com/emorydunn/LaunchAgent)
 * When the app launches upon a disk being inserted, it should exit quickly if the disk is not used for Time Machine
+* ~~When the app launches upon a disk being inserted, it should exit quickly if the disk is not used for Time Machine~~
 * What happens the app tries to unmount after Time Machine but other files are being copied in Finder?
 * Disks should be re-mounted as per the Time Machine schedule
 * Some sort of UI/checkbox to enable/disable/communicate the app is present and running [apple/swift-argument-parser](https://github.com/apple/swift-argument-parser)
