@@ -43,9 +43,6 @@ TODO:
 https://blog.eidinger.info/develop-a-command-line-tool-using-swift-concurrency
 
 
-```
-mint uninstall BrianHenryIE/UnmountVolumeAfterTimeMachine 
-```
 Asking permission to use notifications
 https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications
 How can I write to Notification Center from a launchd command?
