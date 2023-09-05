@@ -22,21 +22,17 @@ public struct UnmountVolumeAfterTimeMachine {
     os_log("%{public}@", log: .default, type: .info, UnmountVolumeAfterTimeMachine().text)
 
     // Get all volumes
-    let keys = [
-      URLResourceKey.volumeNameKey, URLResourceKey.volumeIsRemovableKey,
-      URLResourceKey.volumeIsEjectableKey,
-    ]
-    let paths = FileManager.default.mountedVolumeURLs(
-      includingResourceValuesForKeys: keys, options: [])
-    guard let paths = paths, !paths.isEmpty else {
-      // There are not mounted volumes
+    guard let paths = FileManager.default.mountedVolumeURLs(includingResourceValuesForKeys: nil),
+      !paths.isEmpty
+    else {
+      // There are no mounted volumes
       return
     }
 
     // Get all Time Machine destinations
-    let tmUtil = TmUtil()
     guard
-      let tmDestinationMountPointsM = tmUtil.destinationInfo()?.destinations.map({ $0.mountPoint })
+      let tmDestinationMountPointsM = TmUtil().destinationInfo()?.destinations
+        .map({ $0.mountPoint })
     else {
       // Print ~ "there are no time machine destinations configured"
       return
